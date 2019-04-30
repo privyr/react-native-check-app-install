@@ -8,6 +8,7 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Callback;
 import android.content.pm.PackageManager;
 import android.content.Context;
+import android.provider.Telephony;
 
 public class CheckPackageInstallationModule extends ReactContextBaseJavaModule {
     Context ctx;
@@ -29,6 +30,16 @@ public class CheckPackageInstallationModule extends ReactContextBaseJavaModule {
             cb.invoke(true);
         } catch (Exception e) {
             cb.invoke(false);
+        }
+    }
+
+    @ReactMethod
+    public void getDefaultSmsPackage(Callback cb) {
+        String name = Telephony.Sms.getDefaultSmsPackage(this.ctx);
+        try {
+            cb.invoke(name);
+        } catch (Exception e) {
+            cb.invoke(null);
         }
     }
 }

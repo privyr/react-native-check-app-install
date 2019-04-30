@@ -16,6 +16,14 @@ class AppInstalledChecker {
         });
     }
 
+    static getDefaultSmsPackage() {
+        return new Promise((resolve, reject) => {
+            CheckPackageInstallation.getDefaultSmsPackage((name) => {
+                resolve(name);
+            });
+        });
+    }
+
     static checkURLScheme(proto, query) {
         return new Promise((resolve, reject) => {
             Linking
